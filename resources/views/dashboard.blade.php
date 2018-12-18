@@ -44,6 +44,11 @@
                     @else 
                     <p>You have no post</p>
                     @endif
+                    
+                    <a href="/wisatas/create"class="btn btn-primary">Create Wisata</a>
+
+                    
+
                 </div>
             </div>
         </div>
