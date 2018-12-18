@@ -42,3 +42,7 @@ Auth::routes();
 Route::resource('wisatas','WisatasController');
 
 Route::get('/dashboard', 'DashboardController@index');
+Route::get('/dashboardadmin', 'AdminController@index');
+Route::get('/datawisata', 'AdminController@datatable');
+Route::get('/dataevent', 'AdminController@datatable');
+Route::get('/datareview', 'AdminController@datatable');
