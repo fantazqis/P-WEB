@@ -7,13 +7,22 @@ use App\Wisata;
 use DB;
 class WisatasController extends Controller
 {
-    /**
+      /**
      * Create a new controller instance.
      *
      * @return void
      */
+<<<<<<< HEAD
+    
+    public function __construct()
+    {
+        $this->middleware('auth',['except' => ['index','show']]);
+    }
+    
+=======
    
     
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
 
     /**
      * Display a listing of the resource.
@@ -34,6 +43,9 @@ class WisatasController extends Controller
      */
     public function create()
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         return view('wisatas.create');
     }
 
@@ -81,6 +93,9 @@ class WisatasController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $wisata = Wisata::find($id);
         //check for user
        /* if (auth()->user()->id !==$wisata->user_id) {
@@ -122,6 +137,9 @@ class WisatasController extends Controller
      */
     public function destroy($id)
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $wisata = Wisata::find($id);
 
         $wisata->delete();

@@ -12,12 +12,20 @@ class ReviewsController extends Controller
      *
      * @return void
      */
+<<<<<<< HEAD
+    
+=======
     /*
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
     public function __construct()
     {
         $this->middleware('auth',['except' => ['index','show']]);
     }
+<<<<<<< HEAD
+
+=======
 */
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
 
     /**
      * Display a listing of the resource.
@@ -87,12 +95,20 @@ class ReviewsController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
+        $wisata = Review::find($id);
+=======
         $review = Review::find($id);
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
         //check for user
        /* if (auth()->user()->id !==$wisata->user_id) {
             return redirect('\wisatas')->with('error','Unauthorized Page');
         }*/
+<<<<<<< HEAD
+        return view('reviews.edit')->with('wisata',$wisata);
+=======
         return view('reviews.edit')->with('review',$review);
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
     }
 
     /**
@@ -111,11 +127,19 @@ class ReviewsController extends Controller
         ]);
 
 
+<<<<<<< HEAD
+        $wisata = Review::find($id);
+        $wisata->title = $request->input('title');
+        $wisata->name = $request->input('name');
+        $wisata->detail = $request->input('detail');
+        $wisata->save();
+=======
         $review = Review::find($id);
         $review->title = $request->input('title');
         $review->name = $request->input('name');
         $review->detail = $request->input('detail');
         $review->save();
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
         
         return redirect('/reviews')->with('success','Review Updated');
     }

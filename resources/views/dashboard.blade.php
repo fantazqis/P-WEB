@@ -6,7 +6,11 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Dashboard</div>
+<<<<<<< HEAD
+               
+=======
 
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
                <!-- <div class="card-body">
                 <a href="/posts/create"class="btn btn-primary">Create Post</a>
                 <h3>Your blog post</h3>
@@ -47,13 +51,21 @@
                     
                     <div class="card-body">
                 <a href="/posts/create"class="btn btn-primary">Create Wisata</a>
+<<<<<<< HEAD
+               <!-- <h3>Your wisata post</h3>
+=======
                 <h3>Your wisata post</h3>
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
                     @if (session('status'))
                         <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
+<<<<<<< HEAD
+                    asd
+=======
 
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
                     You are logged in!
                     @if(count($wisatas)>0)
                     <table class="table table-striped">
@@ -87,7 +99,7 @@
                     <p>You have no post</p>
                     @endif
                     <a href="/wisatas/create"class="btn btn-primary">Create Wisata</a>
-
+                -->
                     
 
                 </div>
