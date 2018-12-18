@@ -38,8 +38,14 @@ Auth::routes();
     'wisatas','WisatasController',
     'posts' => 'PostController'
 ]); */
-
 Route::resource('wisatas','WisatasController');
+//Route::resource(['wisatas'=>'WisatasController',
+//'events'=>'EventsController'    
+//]);
+
+Route::resource('events','EventsController');
+
+Route::resource('reviews','ReviewsController');
 
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/dashboardadmin', 'AdminController@index');

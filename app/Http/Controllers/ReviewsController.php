@@ -3,11 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Wisata;
 use DB;
-class WisatasController extends Controller
+use App\Review;
+class ReviewsController extends Controller
 {
-    /**
+  /**
      * Create a new controller instance.
      *
      * @return void
@@ -26,9 +26,9 @@ class WisatasController extends Controller
      */
     public function index()
     {
-        $wisatas = Wisata::orderBy('id','asc')->paginate(10);
+        $reviews = Review::orderBy('id','asc')->paginate(10);
 
-        return view('wisatas.index')->with('wisatas',$wisatas);
+        return view('reviews.index')->with('reviews',$reviews);
     }
 
     /**
@@ -38,7 +38,7 @@ class WisatasController extends Controller
      */
     public function create()
     {
-        return view('wisatas.create');
+        return view('reviews.create');
     }
 
     /**
@@ -51,18 +51,20 @@ class WisatasController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'name' => 'required',
+            'detail' => 'required'
+            
         ]);
         //create post
-        $wisata = new Wisata;
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-       
-        $wisata->save();
+        $review = new Review;
+        $review->title = $request->input('title');
+        $review->name = $request->input('name');
+        $review->detail = $request->input('detail');
         
-        return redirect('/wisatas')->with('success','Wisata Created');
+       
+        $review->save();
+        
+        return redirect('/reviews')->with('success','Review Created');
     }
 
     /**
@@ -73,8 +75,8 @@ class WisatasController extends Controller
      */
     public function show($id)
     {
-        $wisata = Wisata::find($id);
-        return view('wisatas.show')->with('wisata',$wisata);
+        $review = Review::find($id);
+        return view('reviews.show')->with('review',$review);
     }
 
     /**
@@ -85,12 +87,12 @@ class WisatasController extends Controller
      */
     public function edit($id)
     {
-        $wisata = Wisata::find($id);
+        $review = Review::find($id);
         //check for user
        /* if (auth()->user()->id !==$wisata->user_id) {
             return redirect('\wisatas')->with('error','Unauthorized Page');
         }*/
-        return view('wisatas.edit')->with('wisata',$wisata);
+        return view('reviews.edit')->with('review',$review);
     }
 
     /**
@@ -104,18 +106,18 @@ class WisatasController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'name' => 'required',
+            'detail' => 'required'
         ]);
 
 
-        $wisata = Wisata::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-        $wisata->save();
+        $review = Review::find($id);
+        $review->title = $request->input('title');
+        $review->name = $request->input('name');
+        $review->detail = $request->input('detail');
+        $review->save();
         
-        return redirect('/wisatas')->with('success','Wisata Updated');
+        return redirect('/reviews')->with('success','Review Updated');
     }
 
     /**
@@ -126,9 +128,9 @@ class WisatasController extends Controller
      */
     public function destroy($id)
     {
-        $wisata = Wisata::find($id);
+        $review = Review::find($id);
 
-        $wisata->delete();
-        return redirect('/wisatas')->with('success','wisata Removed');
+        $review->delete();
+        return redirect('/reviews')->with('success','Review Removed');
     }
 }

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Wisata</h1>
-    @if(count($wisatas)>0)
-        @foreach($wisatas as $wisata)
+    <h1>Review</h1>
+    @if(count($reviews)>0)
+        @foreach($reviews as $review)
             <div class="well">
-           <!--{{route('wisatas.show', $wisata->id)}}--> 
+           <!--{{route('reviews.show', $review->id)}}--> 
                 <div class="row">
                          <div class="col-md-4 col-sm-4">
                            
@@ -13,12 +13,12 @@
                          <div class="col-md-8 col-sm-8">
                          </div>
                 </div>
-                <h3><a href="/wisatas/{{$wisata->id}}">{{$wisata->title}}</a></h3>
+                <h3><a href="/reviews/{{$review->id}}">{{$review->title}}</a></h3>
                
              </div>
         @endforeach
-        {{$wisatas->links()}}
+        {{$reviews->links()}}
     @else
-        <p>No wisata found</p>
+        <p>No Review found</p>
     @endif
 @endsection

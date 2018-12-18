@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Wisata;
+use App\Event;
 use DB;
-class WisatasController extends Controller
+class EventsController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,9 +26,9 @@ class WisatasController extends Controller
      */
     public function index()
     {
-        $wisatas = Wisata::orderBy('id','asc')->paginate(10);
+        $events = Event::orderBy('id','asc')->paginate(10);
 
-        return view('wisatas.index')->with('wisatas',$wisatas);
+        return view('events.index')->with('events',$events);
     }
 
     /**
@@ -38,7 +38,7 @@ class WisatasController extends Controller
      */
     public function create()
     {
-        return view('wisatas.create');
+        return view('events.create');
     }
 
     /**
@@ -51,18 +51,15 @@ class WisatasController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'detail' => 'required'
         ]);
         //create post
-        $wisata = new Wisata;
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-       
-        $wisata->save();
+        $event = new Event;
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
+        $event->save();
         
-        return redirect('/wisatas')->with('success','Wisata Created');
+        return redirect('/events')->with('success','Event Created');
     }
 
     /**
@@ -73,8 +70,8 @@ class WisatasController extends Controller
      */
     public function show($id)
     {
-        $wisata = Wisata::find($id);
-        return view('wisatas.show')->with('wisata',$wisata);
+        $event = Event::find($id);
+        return view('events.show')->with('event',$event);
     }
 
     /**
@@ -85,12 +82,12 @@ class WisatasController extends Controller
      */
     public function edit($id)
     {
-        $wisata = Wisata::find($id);
+        $event = Event::find($id);
         //check for user
        /* if (auth()->user()->id !==$wisata->user_id) {
             return redirect('\wisatas')->with('error','Unauthorized Page');
         }*/
-        return view('wisatas.edit')->with('wisata',$wisata);
+        return view('events.edit')->with('event',$event);
     }
 
     /**
@@ -104,18 +101,16 @@ class WisatasController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'detail' => 'required'
         ]);
 
 
-        $wisata = Wisata::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-        $wisata->save();
+        $event = Event::find($id);
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
+        $event->save();
         
-        return redirect('/wisatas')->with('success','Wisata Updated');
+        return redirect('/events')->with('success','Event Updated');
     }
 
     /**
@@ -126,9 +121,9 @@ class WisatasController extends Controller
      */
     public function destroy($id)
     {
-        $wisata = Wisata::find($id);
+        $event = Event::find($id);
 
-        $wisata->delete();
-        return redirect('/wisatas')->with('success','wisata Removed');
+        $event->delete();
+        return redirect('/events')->with('success','Event Removed');
     }
 }

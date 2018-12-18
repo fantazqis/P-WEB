@@ -30,6 +30,12 @@
                       <li class="nav-item">
                         <a class="nav-link" href="/wisatas">Wisata</a>
                       </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/events">Event</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="/reviews">Review</a>
+                      </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
