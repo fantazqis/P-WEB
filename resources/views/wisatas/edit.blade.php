@@ -5,15 +5,15 @@
     {!! Form::open(['action'=>'WisatasController@store','method'=>'POST']) !!}
     <div class="form-group">
         {{form::label('title','Title')}}
-        {{form::text('title','',['class' =>'form-control','placeholder' => 'title'])}}
+        {{form::text('title',$wisata->title,['class' =>'form-control','placeholder' => 'title'])}}
     </div>
     <div class="form-group">
         {{form::label('detail','Detail')}}
-        {{form::textarea('detail','',['id'=>'article-ckeditor','class' =>'form-control','placeholder' => 'Detail Text'])}}
+        {{form::textarea('detail',$wisata->detail,['id'=>'article-ckeditor','class' =>'form-control','placeholder' => 'Detail Text'])}}
     </div>
     <div class="form-group">
         {{form::label('hotel','Hotel')}}
-        {{form::text('hotel','',['class' =>'form-control','placeholder' => 'hotel'])}}
+        {{form::text('hotel',$wisata->hotel,['class' =>'form-control','placeholder' => 'hotel'])}}
     </div>
     {{form::hidden('_method','PUT')}}
     {{form::submit('Submit',['class'=>'btn btn-primary'])}}
