@@ -39,10 +39,17 @@ Auth::routes();
     'posts' => 'PostController'
 ]); */
 
-Route::resource('wisatas','WisatasController');
+//Route::resource('wisatas','WisatasController');
+Route::resources([
+    'wisatas' => 'WisatasController',
+    'adminwisatas' => 'AdminwisataController',
+    'adminevents' => 'AdmineventController',
+    'adminreviews' => 'AdminreviewController'
+]); 
 
 Route::get('/dashboard', 'DashboardController@index');
 Route::get('/dashboardadmin', 'AdminController@index');
-Route::get('/datawisata', 'AdminController@datatable');
-Route::get('/dataevent', 'AdminController@datatable');
-Route::get('/datareview', 'AdminController@datatable');
+Route::get('/datawisata', 'AdminController@indexwisata');
+Route::get('/dataevent', 'AdminController@indexevent');
+Route::get('/datareview', 'AdminController@indexreview');
+Route::get('/adminsetting', 'AdminController@setting');

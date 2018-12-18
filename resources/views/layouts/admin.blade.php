@@ -79,7 +79,6 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#">Settings</a>
-            <a class="dropdown-item" href="#">Activity Log</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">Logout</a>
           </div>
@@ -104,11 +103,6 @@
             <span>Pages</span>
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="{{ route('login') }}">{{ __('Login') }}</a>
-            <a class="dropdown-item" href="{{ route('register') }}">{{ __('Register') }}</a>
-            <a class="dropdown-item" href="/forgot-password">Forgot Password</a>
-            <div class="dropdown-divider"></div>
             <h6 class="dropdown-header">Public Pages:</h6>
             <a class="dropdown-item" href="/wisata">Tempat Wisata</a>
             <a class="dropdown-item" href="/event">Upcoming Event</a>
@@ -116,17 +110,17 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/datawisata">
+          <a class="nav-link" href="/adminwisatas">
             <i class="fas fa-fw fa-table"></i>
             <span>Wisata</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/dataevent">
+          <a class="nav-link" href="/adminevents">
             <i class="fas fa-fw fa-table"></i>
             <span>Event</span></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/datareview">
+          <a class="nav-link" href="/adminreviews">
             <i class="fas fa-fw fa-table"></i>
             <span>Review</span></a>
         </li>
@@ -172,7 +166,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="{{ route('logout') }}">{{ __('Logout') }}</a>
           </div>
         </div>
       </div>

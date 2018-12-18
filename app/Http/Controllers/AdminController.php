@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Admin;
+use App\User;
+use App\Wisata;
 
 class AdminController extends Controller
 {
@@ -26,12 +27,13 @@ class AdminController extends Controller
     {
         //$user_id = auth()->user()->id;
         //$user = User::find($user_id);
-        $admin = Admin::all();
+        $admin = User::where('bool',1)->get();
         return view('admin.dashboard_admin')->with('admin',$admin);
     }
 
-    public function datatable()
+    public function setting()
     {
-        return view('admin.datatable');
+        return view('admin.setting');
     }
+
 }

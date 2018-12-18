@@ -23,33 +23,31 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Title</th>
+                      <th>About</th>
+                      <th>Option<th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Title</th>
+                      <th>About</th>
+                      <th>Option<th>
                     </tr>
                   </tfoot>
                   <tbody>
-                    <tr>
-                      <td>Tiger Nixon</td>
-                      <td>System Architect</td>
-                      <td>Edinburgh</td>
-                      <td>61</td>
-                      <td>2011/04/25</td>
-                      <td>$320,800</td>
-                    </tr>
+                      @if(count($events) >0)
+                        @foreach($events as $event)
+                         <tr>
+                            <td>{{$event->title}}</td>
+                            <td>{{$event->detail}}</td>
+                            <td><div class="btn-group-vertical"><a href="/adminevents/{{$event->id}}/edit" class="btn btn-primary mr-2 mb-1">Edit</a>{!!Form::open(['action'=>['AdmineventController@destroy',$event->id],'method' =>'POST','class' => 'pull-right'])!!}
+                                {{Form::hidden('_method','DELETE')}}
+                                {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                            {!!Form::close()!!}</div></td>
+                          </tr>
+                        @endforeach
+                      @endif
                   </tbody>
                 </table>
               </div>
