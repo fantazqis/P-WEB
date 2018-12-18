@@ -5,11 +5,9 @@
     @if(count($wisatas) > 0)
         @foreach($wisatas as $wisata)
             <div class="well">
-            <!--{{route('posts.show', $post->id)}}  -->
+            <!--{{route('wisatas.show', $wisata->id)}}  -->
                <div class="row">
                          <div class="col-md-4 col-sm-4">
-                           
-                           
                          </div>
                          <div class="col-md-8 col-sm-8">
                          </div>
