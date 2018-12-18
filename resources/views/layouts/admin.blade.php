@@ -104,9 +104,9 @@
           </a>
           <div class="dropdown-menu" aria-labelledby="pagesDropdown">
             <h6 class="dropdown-header">Public Pages:</h6>
-            <a class="dropdown-item" href="/wisata">Tempat Wisata</a>
-            <a class="dropdown-item" href="/event">Upcoming Event</a>
-            <a class="dropdown-item" href="/review">Review</a>
+            <a class="dropdown-item" href="/wisatas">Tempat Wisata</a>
+            <a class="dropdown-item" href="/events">Upcoming Event</a>
+            <a class="dropdown-item" href="/reviews">Review</a>
           </div>
         </li>
         <li class="nav-item">

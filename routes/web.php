@@ -43,7 +43,7 @@ Auth::routes();
 Route::resources([
     'wisatas' => 'WisatasController',
     'events' => 'EventsController',
-    'reviews'=>'ReviewsController',
+    'reviews'=> 'ReviewsController',
     'adminwisatas' => 'AdminwisataController',
     'adminevents' => 'AdmineventController',
     'adminreviews' => 'AdminreviewController'

@@ -39,7 +39,7 @@ class AdmineventController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createevent');
     }
 
     /**
@@ -50,7 +50,19 @@ class AdmineventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'detail' => 'required'
+        ]);
+
+        //create post
+        $event = new Event;
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
+
+        $event->save();
+        
+        return redirect('/adminevents')->with('success','Post Created');
     }
 
     /**
@@ -61,7 +73,7 @@ class AdmineventController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -96,11 +108,11 @@ class AdmineventController extends Controller
         ]);
 
         //create post
-        $wisata = Event::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
+        $event = Event::find($id);
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
 
-        $wisata->save();
+        $event->save();
         
         return redirect('/adminevents')->with('success','Post Updated');
     }

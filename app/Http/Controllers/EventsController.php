@@ -12,12 +12,20 @@ class EventsController extends Controller
      *
      * @return void
      */
+<<<<<<< HEAD
+    
+=======
     /*
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
     public function __construct()
     {
         $this->middleware('auth',['except' => ['index','show']]);
     }
+<<<<<<< HEAD
+
+=======
 */
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
 
     /**
      * Display a listing of the resource.
@@ -38,6 +46,12 @@ class EventsController extends Controller
      */
     public function create()
     {
+<<<<<<< HEAD
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
+=======
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
         return view('events.create');
     }
 
@@ -82,6 +96,12 @@ class EventsController extends Controller
      */
     public function edit($id)
     {
+<<<<<<< HEAD
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
+=======
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
         $event = Event::find($id);
         //check for user
        /* if (auth()->user()->id !==$wisata->user_id) {
@@ -121,6 +141,12 @@ class EventsController extends Controller
      */
     public function destroy($id)
     {
+<<<<<<< HEAD
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
+=======
+>>>>>>> 95803e515ab4cb553beb93bb8e4f5af0432262e1
         $event = Event::find($id);
 
         $event->delete();

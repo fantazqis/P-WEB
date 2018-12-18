@@ -17,7 +17,7 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Data Tempat Wisata</div>
+              Data Tempat Wisata<a class="btn btn-primary float-right btn-sm" href="/adminwisatas/create">New</a></div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

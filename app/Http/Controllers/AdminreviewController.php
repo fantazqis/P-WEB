@@ -40,7 +40,7 @@ class AdminreviewController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.createreview');
     }
 
     /**
@@ -51,7 +51,20 @@ class AdminreviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request,[
+            'title' => 'required',
+            'detail' => 'required'
+        ]);
+
+        //create post
+        $review = new Review;
+        $review->title = $request->input('title');
+        $review->name = auth()->user()->name;
+        $review->detail = $request->input('detail');
+
+        $review->save();
+        
+        return redirect('/adminreviews')->with('success','Post Created');
     }
 
     /**
@@ -97,12 +110,12 @@ class AdminreviewController extends Controller
         ]);
 
         //create post
-        $wisata = Review::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->name = $request->input('name');
-        $wisata->detail = $request->input('detail');
+        $review = Review::find($id);
+        $review->title = $request->input('title');
+        $review->name = $request->input('name');
+        $review->detail = $request->input('detail');
 
-        $wisata->save();
+        $review->save();
         
         return redirect('/adminreviews')->with('success','Post Updated');
     }
