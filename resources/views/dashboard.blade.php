@@ -7,7 +7,7 @@
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
-                <div class="card-body">
+               <!-- <div class="card-body">
                 <a href="/posts/create"class="btn btn-primary">Create Post</a>
                 <h3>Your blog post</h3>
                     @if (session('status'))
@@ -43,8 +43,49 @@
                     </table>
                     @else 
                     <p>You have no post</p>
-                    @endif
+                    @endif -->
                     
+                    <div class="card-body">
+                <a href="/posts/create"class="btn btn-primary">Create Wisata</a>
+                <h3>Your wisata post</h3>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    You are logged in!
+                    @if(count($wisatas)>0)
+                    <table class="table table-striped">
+                        <tr>
+                            <th>
+                            Title
+                            </th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        @foreach($wisatas as $wisata)
+                        <tr>
+                            <td>
+                            {{$post->title}}
+                            </td>
+                            @if(!Auth::guest())
+        @if(Auth::user()->bool !== 1 )
+                            <td><a href="/wisatas/{{$wisata->id}}/edit" class="btn btn-default" >Edit</a></td>
+                            <td>
+                            {!!Form::open(['action'=>['PostsController@destroy',$post->id],'method' =>'POST','class' => 'pull-right'])!!}
+                                 {{Form::hidden('_method','DELETE')}}
+                                 {{Form::submit('Delete',['class'=>'btn btn-danger'])}}
+                          {!!Form::close()!!}
+                          @endif
+                          @endif
+                            </td>
+                        </tr>
+                        @endforeach
+                    </table>
+                    @else 
+                    <p>You have no post</p>
+                    @endif
                     <a href="/wisatas/create"class="btn btn-primary">Create Wisata</a>
 
                     

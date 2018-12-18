@@ -8,6 +8,16 @@ use DB;
 
 class AdmineventController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,6 +25,9 @@ class AdmineventController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $events = Event::all();
         return view('admin.dataevent')->with('events',$events);
     }
@@ -59,8 +72,12 @@ class AdmineventController extends Controller
      */
     public function edit($id)
     {
-        $post = Event::find($id);
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         
+        $post = Event::find($id);
+      
         return view('admin.updateevent')->with('post',$post);
     }
 

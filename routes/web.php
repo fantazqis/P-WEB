@@ -42,6 +42,8 @@ Auth::routes();
 //Route::resource('wisatas','WisatasController');
 Route::resources([
     'wisatas' => 'WisatasController',
+    'events' => 'EventsController',
+    'reviews'=>'ReviewsController',
     'adminwisatas' => 'AdminwisataController',
     'adminevents' => 'AdmineventController',
     'adminreviews' => 'AdminreviewController'

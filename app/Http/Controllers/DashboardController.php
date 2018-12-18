@@ -24,6 +24,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->bool !== 0) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $user_id = auth()->user()->id;
         $user = User::find($user_id);
         return view('dashboard')->with('posts',$user->posts);

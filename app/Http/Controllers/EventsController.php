@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Wisata;
+use App\Event;
 use DB;
-
-class AdminwisataController extends Controller
+class EventsController extends Controller
 {
-     /**
+    /**
      * Create a new controller instance.
      *
      * @return void
      */
+    /*
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['index','show']]);
     }
+*/
 
-    
     /**
      * Display a listing of the resource.
      *
@@ -26,12 +26,9 @@ class AdminwisataController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->bool !== 1) {
-            return redirect('\about')->with('error','Unauthorized Page');
-        }
-        
-        $wisatas = Wisata::all();
-        return view('admin.datawisata')->with('wisatas',$wisatas);
+        $events = Event::orderBy('id','asc')->paginate(10);
+
+        return view('events.index')->with('events',$events);
     }
 
     /**
@@ -41,7 +38,7 @@ class AdminwisataController extends Controller
      */
     public function create()
     {
-        return view('admin.createwisata');
+        return view('events.create');
     }
 
     /**
@@ -54,18 +51,15 @@ class AdminwisataController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'detail' => 'required'
         ]);
         //create post
-        $wisata = new Wisata;
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-       
-        $wisata->save();
+        $event = new Event;
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
+        $event->save();
         
-        return redirect('/adminwisatas')->with('success','Wisata Created');
+        return redirect('/events')->with('success','Event Created');
     }
 
     /**
@@ -76,7 +70,8 @@ class AdminwisataController extends Controller
      */
     public function show($id)
     {
-        //
+        $event = Event::find($id);
+        return view('events.show')->with('event',$event);
     }
 
     /**
@@ -87,13 +82,12 @@ class AdminwisataController extends Controller
      */
     public function edit($id)
     {
-        if (auth()->user()->bool !== 1) {
-            return redirect('\about')->with('error','Unauthorized Page');
-        }
-        
-        $post = Wisata::find($id);
-        
-        return view('admin.updatewisata')->with('post',$post);
+        $event = Event::find($id);
+        //check for user
+       /* if (auth()->user()->id !==$wisata->user_id) {
+            return redirect('\wisatas')->with('error','Unauthorized Page');
+        }*/
+        return view('events.oedit')->with('event',$event);
     }
 
     /**
@@ -107,19 +101,16 @@ class AdminwisataController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'detail' => 'required'
         ]);
 
-        //create post
-        $wisata = Wisata::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
 
-        $wisata->save();
+        $event = Event::find($id);
+        $event->title = $request->input('title');
+        $event->detail = $request->input('detail');
+        $event->save();
         
-        return redirect('/adminwisatas')->with('success','Post Updated');
+        return redirect('/events')->with('success','Event Updated');
     }
 
     /**
@@ -130,9 +121,9 @@ class AdminwisataController extends Controller
      */
     public function destroy($id)
     {
-        $post = Wisata::find($id);
+        $event = Event::find($id);
 
-        $post->delete();
-        return redirect('/adminwisatas')->with('success','Post Removed');
+        $event->delete();
+        return redirect('/events')->with('success','Event Removed');
     }
 }

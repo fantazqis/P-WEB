@@ -3,22 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Wisata;
 use DB;
-
-class AdminwisataController extends Controller
+use App\Review;
+class ReviewsController extends Controller
 {
-     /**
+  /**
      * Create a new controller instance.
      *
      * @return void
      */
+    /*
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth',['except' => ['index','show']]);
     }
+*/
 
-    
     /**
      * Display a listing of the resource.
      *
@@ -26,12 +26,9 @@ class AdminwisataController extends Controller
      */
     public function index()
     {
-        if (auth()->user()->bool !== 1) {
-            return redirect('\about')->with('error','Unauthorized Page');
-        }
-        
-        $wisatas = Wisata::all();
-        return view('admin.datawisata')->with('wisatas',$wisatas);
+        $reviews = Review::orderBy('id','asc')->paginate(10);
+
+        return view('reviews.index')->with('reviews',$reviews);
     }
 
     /**
@@ -41,7 +38,7 @@ class AdminwisataController extends Controller
      */
     public function create()
     {
-        return view('admin.createwisata');
+        return view('reviews.create');
     }
 
     /**
@@ -54,18 +51,20 @@ class AdminwisataController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'name' => 'required',
+            'detail' => 'required'
+            
         ]);
         //create post
-        $wisata = new Wisata;
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
-       
-        $wisata->save();
+        $review = new Review;
+        $review->title = $request->input('title');
+        $review->name = $request->input('name');
+        $review->detail = $request->input('detail');
         
-        return redirect('/adminwisatas')->with('success','Wisata Created');
+       
+        $review->save();
+        
+        return redirect('/reviews')->with('success','Review Created');
     }
 
     /**
@@ -76,7 +75,8 @@ class AdminwisataController extends Controller
      */
     public function show($id)
     {
-        //
+        $review = Review::find($id);
+        return view('reviews.show')->with('review',$review);
     }
 
     /**
@@ -87,13 +87,12 @@ class AdminwisataController extends Controller
      */
     public function edit($id)
     {
-        if (auth()->user()->bool !== 1) {
-            return redirect('\about')->with('error','Unauthorized Page');
-        }
-        
-        $post = Wisata::find($id);
-        
-        return view('admin.updatewisata')->with('post',$post);
+        $review = Review::find($id);
+        //check for user
+       /* if (auth()->user()->id !==$wisata->user_id) {
+            return redirect('\wisatas')->with('error','Unauthorized Page');
+        }*/
+        return view('reviews.edit')->with('review',$review);
     }
 
     /**
@@ -107,19 +106,18 @@ class AdminwisataController extends Controller
     {
         $this->validate($request,[
             'title' => 'required',
-            'detail' => 'required',
-            'hotel' => 'required'
+            'name' => 'required',
+            'detail' => 'required'
         ]);
 
-        //create post
-        $wisata = Wisata::find($id);
-        $wisata->title = $request->input('title');
-        $wisata->detail = $request->input('detail');
-        $wisata->hotel = $request->input('hotel');
 
-        $wisata->save();
+        $review = Review::find($id);
+        $review->title = $request->input('title');
+        $review->name = $request->input('name');
+        $review->detail = $request->input('detail');
+        $review->save();
         
-        return redirect('/adminwisatas')->with('success','Post Updated');
+        return redirect('/reviews')->with('success','Review Updated');
     }
 
     /**
@@ -130,9 +128,9 @@ class AdminwisataController extends Controller
      */
     public function destroy($id)
     {
-        $post = Wisata::find($id);
+        $review = Review::find($id);
 
-        $post->delete();
-        return redirect('/adminwisatas')->with('success','Post Removed');
+        $review->delete();
+        return redirect('/reviews')->with('success','Review Removed');
     }
 }

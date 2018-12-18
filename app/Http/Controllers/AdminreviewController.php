@@ -8,6 +8,16 @@ use DB;
 
 class AdminreviewController extends Controller
 {
+     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +25,11 @@ class AdminreviewController extends Controller
      */
     public function index()
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $reviews = Review::all();
+        
         return view('admin.datareview')->with('reviews',$reviews);
     }
 
@@ -59,8 +73,11 @@ class AdminreviewController extends Controller
      */
     public function edit($id)
     {
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $post = Review::find($id);
-        
+      
         return view('admin.updatereview')->with('post',$post);
     }
 

@@ -15,7 +15,7 @@ class AdminController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        $this->middleware('auth');
     }
 
     /**
@@ -27,6 +27,9 @@ class AdminController extends Controller
     {
         //$user_id = auth()->user()->id;
         //$user = User::find($user_id);
+        if (auth()->user()->bool !== 1) {
+            return redirect('\about')->with('error','Unauthorized Page');
+        }
         $admin = User::where('bool',1)->get();
         return view('admin.dashboard_admin')->with('admin',$admin);
     }

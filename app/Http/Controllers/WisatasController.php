@@ -12,15 +12,8 @@ class WisatasController extends Controller
      *
      * @return void
      */
-<<<<<<< HEAD
    
     
-=======
-    public function __construct()
-    {
-        $this->middleware('auth',['except' => ['index','show']]);
-    }
->>>>>>> f5c51fd6eb2f3a5ee39994bbb67ea1b933368d20
 
     /**
      * Display a listing of the resource.
