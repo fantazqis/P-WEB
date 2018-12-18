@@ -18,7 +18,7 @@ class CreateWisataTable extends Migration
             $table->string('title');
             $table->mediumText('detail');
             $table->string('hotel');
-            $table->integer('user_id');
+           // $table->integer('user_id');
             $table->timestamps();
         });
     }

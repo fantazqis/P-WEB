@@ -12,7 +12,8 @@ class WisatasController extends Controller
      *
      * @return void
      */
-  
+   
+    
 
     /**
      * Display a listing of the resource.
@@ -22,6 +23,7 @@ class WisatasController extends Controller
     public function index()
     {
         $wisatas = Wisata::orderBy('id','asc')->paginate(10);
+
         return view('wisatas.index')->with('wisatas',$wisatas);
     }
 
@@ -53,7 +55,7 @@ class WisatasController extends Controller
         $wisata->title = $request->input('title');
         $wisata->detail = $request->input('detail');
         $wisata->hotel = $request->input('hotel');
-        $wisata->user_id = auth()->user()->id;
+       
         $wisata->save();
         
         return redirect('/wisatas')->with('success','Wisata Created');
@@ -81,9 +83,9 @@ class WisatasController extends Controller
     {
         $wisata = Wisata::find($id);
         //check for user
-        if (auth()->user()->id !==$wisata->user_id) {
+       /* if (auth()->user()->id !==$wisata->user_id) {
             return redirect('\wisatas')->with('error','Unauthorized Page');
-        }
+        }*/
         return view('wisatas.edit')->with('wisata',$wisata);
     }
 
@@ -109,7 +111,7 @@ class WisatasController extends Controller
         $wisata->hotel = $request->input('hotel');
         $wisata->save();
         
-        return redirect('/wisata')->with('success','Wisata Updated');
+        return redirect('/wisatas')->with('success','Wisata Updated');
     }
 
     /**

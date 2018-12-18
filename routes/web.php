@@ -31,10 +31,14 @@ Route::get('/hello', function(){
 Route::get('/', 'PagesController@index');
 Route::get('/about', 'PagesController@about');
 Route::get('/services', 'PagesController@services');
+Auth::routes();
+//Route::resource('posts','PostsController');
+//Auth::routes();
+/*Route::resources([
+    'wisatas','WisatasController',
+    'posts' => 'PostController'
+]); */
 
-Route::resource('posts','PostsController');
-Auth::routes();
 Route::resource('wisatas','WisatasController');
-Auth::routes();
 
 Route::get('/dashboard', 'DashboardController@index');
