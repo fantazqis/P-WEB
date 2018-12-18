@@ -10,7 +10,10 @@
             <li class="breadcrumb-item">
               <a href="/dashboardadmin">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Update Data</li>
+            <li class="breadcrumb-item">
+              <a href="/adminwisatas">Tempat Wisata</a>
+            </li>
+            <li class="breadcrumb-item active">Update Wisata</li>
           </ol>
 
           <div class="col-md-9">
@@ -18,7 +21,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>Post Data</h4>
+                        <h4>Update Wisata</h4>
                         <hr>
                     </div>
                 </div>

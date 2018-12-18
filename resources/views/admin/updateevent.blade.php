@@ -10,7 +10,10 @@
             <li class="breadcrumb-item">
               <a href="/dashboardadmin">Dashboard</a>
             </li>
-            <li class="breadcrumb-item active">Update Data</li>
+            <li class="breadcrumb-item">
+              <a href="/adminevents">List Event</a>
+            </li>
+            <li class="breadcrumb-item active">Update Event</li>
           </ol>
 
           <div class="col-md-9">
@@ -18,7 +21,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-12">
-                        <h4>Post Data</h4>
+                        <h4>Update Event</h4>
                         <hr>
                     </div>
                 </div>
